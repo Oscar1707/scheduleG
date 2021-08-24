@@ -15,19 +15,19 @@ const Texto = () => {
 
 const PickerList = () => {
   const [selectedValue, setSelectedValue] = useState("TODOS");
+
   return (
     <View style={styles.container}>
         <Picker
-          selectedValue={selectedValue}
-          style={{ height: 50, width: 150 }}
-          onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+            selectedValue={selectedValue}
+            style={{ height: 40, width: 150 }}
+            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
         >    
-        <Picker.Item label="TODOS" value="all" />
-        <Picker.Item label="SISTEMAS" value="sis" />
-        <Picker.Item label="CONTABILIDAD" value="con" />  
-        <Picker.Item label="MANTENIMIENTO" value="mnt" />
-  
-      </Picker>
+            <Picker.Item label="TODOS" value="all" />
+            <Picker.Item label="SISTEMAS" value="sis" />
+            <Picker.Item label="CONTABILIDAD" value="con" />  
+            <Picker.Item label="MANTENIMIENTO" value="mnt" />
+        </Picker>
     </View>
   );
 }
@@ -55,12 +55,12 @@ export default function App() {
 
           <StatusBar style="auto" />
           <View style={styles.pricipalMenu}>
-           <Button title = 'Buscar'></Button>
-           <PickerList /> 
+              <PickerList /> 
+              <Button title= "Enviar"></Button>
            </View>
             <FlatList   style = {styles.flatlist}
               data = {user} 
-              renderItem = {({item}) =>  <Text style = {styles.item}> {item.id}.- {item.title}  </Text>}
+              renderItem = {({item}) =>   <Text style = {styles.item}> {item.id}.- {item.title}  </Text>   }
               keyExtractor = {item => String(item.id)}
             />
 
@@ -71,7 +71,6 @@ export default function App() {
 const styles = StyleSheet.create({
    
   container: {
-    paddingTop: 20,
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'stretch'
@@ -80,6 +79,11 @@ const styles = StyleSheet.create({
 
   pricipalMenu: {
     flexDirection: "row",
+    paddingTop:30,
+  },
+  day: {
+    backgroundColor:  "red",
+    color: "white"
   },
 
   
