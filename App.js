@@ -21,7 +21,7 @@ const PickerList = () => {
           selectedValue={selectedValue}
           style={{ height: 50, width: 150 }}
           onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-        >        
+        >    
         <Picker.Item label="TODOS" value="all" />
         <Picker.Item label="SISTEMAS" value="sis" />
         <Picker.Item label="CONTABILIDAD" value="con" />  
@@ -38,7 +38,7 @@ export default function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
+    fetch('https://jsonplaceholder.typicode.com/posts')
     .then(response => response.json())
     .then(data => {
       setUser(data)
@@ -54,10 +54,13 @@ export default function App() {
     <View style={styles.container}>
 
           <StatusBar style="auto" />
-            <PickerList /> 
+          <View style={styles.pricipalMenu}>
+           <Button title = 'Buscar'></Button>
+           <PickerList /> 
+           </View>
             <FlatList   style = {styles.flatlist}
               data = {user} 
-              renderItem = {({item}) =>  <Text style = {styles.item}> {item.id}.- {item.username}  </Text>}
+              renderItem = {({item}) =>  <Text style = {styles.item}> {item.id}.- {item.title}  </Text>}
               keyExtractor = {item => String(item.id)}
             />
 
@@ -68,20 +71,17 @@ export default function App() {
 const styles = StyleSheet.create({
    
   container: {
-    padding: 10,
-    flex: 1,   
+    paddingTop: 20,
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'stretch'
+    
   },
 
-  ahead : {  
-      alignItems: 'center',    
-      flex: 1,   
-      flexDirection: "row",
+  pricipalMenu: {
+    flexDirection: "row",
   },
-  
-  
+
   
   item: {
     padding: 10,
@@ -91,13 +91,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
 
-  flatlist: {
-    padding: 22,
-   
-  },
-  
-  
-
+ 
 
 
 });
